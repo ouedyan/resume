@@ -1,11 +1,14 @@
 import localFont from "next/font/local";
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
+import { getResume } from "../../content/resume";
 import {
   defaultLocale,
   isLocale,
   localeConfig,
 } from "../../lib/i18n/config";
+import { buildMetadata } from "../../lib/seo";
 import "../globals.css";
 
 const inter = localFont({
@@ -25,6 +28,20 @@ const inter = localFont({
   fallback: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
   variable: "--font-inter",
 });
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isLocale(locale)) {
+    return {};
+  }
+
+  return buildMetadata(locale, getResume(locale));
+}
 
 export default async function LocaleLayout({
   children,
