@@ -53,7 +53,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
-    "/api/pdf/[locale]": ["./node_modules/@sparticuz/chromium/bin/**/*"],
+    "/api/pdf/*": ["./node_modules/@sparticuz/chromium/bin/**/*"],
   },
   poweredByHeader: false,
   turbopack: {

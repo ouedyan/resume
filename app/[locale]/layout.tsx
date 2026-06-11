@@ -7,6 +7,7 @@ import {
   defaultLocale,
   isLocale,
   localeConfig,
+  siteUrl,
 } from "../../lib/i18n/config";
 import { buildMetadata } from "../../lib/seo";
 import "../globals.css";
@@ -37,7 +38,9 @@ export async function generateMetadata({
   const { locale } = await params;
 
   if (!isLocale(locale)) {
-    return {};
+    return {
+      metadataBase: new URL(siteUrl),
+    };
   }
 
   return buildMetadata(locale, getResume(locale));
