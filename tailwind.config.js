@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
-        'lft': ['LftEtica', 'lft-etica', '-apple-system', 'sans-serif'],
+        'inter': ['var(--font-inter)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        'lft': ['var(--font-inter)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         'plex': ['IBM Plex Mono', 'monospace'],
       },
       colors: {

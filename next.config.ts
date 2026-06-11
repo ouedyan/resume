@@ -9,8 +9,8 @@ const contentSecurityPolicy = [
   "frame-ancestors 'none'",
   "object-src 'none'",
   "script-src 'self' 'unsafe-inline'",
-  "style-src 'self' 'unsafe-inline' https://use.typekit.net",
-  "font-src 'self' data: https://assets.standardresume.co https://use.typekit.net",
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self' data:",
   "img-src 'self' data: blob:",
   "connect-src 'self'",
   ...(isProduction ? ["upgrade-insecure-requests"] : []),
@@ -55,6 +55,15 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   turbopack: {
     root: process.cwd(),
+  },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/en",
+        permanent: true,
+      },
+    ];
   },
   async headers() {
     return [

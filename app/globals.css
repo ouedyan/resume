@@ -1,6 +1,3 @@
-/* LFT Etica font styles */
-@import url("https://use.typekit.net/kpf8pfn.css");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,10 +18,34 @@
   a:hover {
     @apply opacity-70;
   }
+
+  a:focus-visible {
+    @apply rounded-sm outline-none ring-2 ring-resume-text-primary ring-offset-2;
+  }
 }
 
 /* Components */
 @layer components {
+  .resume-toolbar {
+    @apply flex min-h-0 items-center justify-end gap-3 px-4 lg:min-h-[42px] lg:px-0 print:hidden;
+  }
+
+  .resume-language-switcher {
+    @apply my-3 inline-flex rounded-full bg-white p-1 font-lft text-xs font-medium text-resume-text-secondary shadow-sm;
+  }
+
+  .resume-language-link {
+    @apply rounded-full px-3 py-1.5 transition-colors hover:bg-resume-background-skill hover:opacity-100;
+  }
+
+  .resume-language-link[aria-current="page"] {
+    @apply bg-resume-text-primary text-white;
+  }
+
+  .resume-download-link {
+    @apply my-3 inline-flex rounded-full bg-white p-2 text-black/60 shadow-sm transition-colors hover:text-black hover:opacity-100;
+  }
+
   .resume-header {
     @apply relative mb-10;
   }
@@ -117,12 +138,16 @@
 }
 
 @media (max-width: 639px) {
-  .resume-contact-separator {
-    display: none;
+  .resume-toolbar {
+    @apply justify-between;
   }
 
-  .resume-contact > * {
+  .resume-contact > :not(.resume-contact-separator) {
     display: block;
+  }
+
+  .resume-contact-separator {
+    display: none;
   }
 
   .resume-skills-container {
