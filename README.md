@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yan OUEDRAOGO Resume
 
-## Getting Started
+The production source for [resume.ouedyan.dev](https://resume.ouedyan.dev).
+The same Next.js application renders the English, French, and Turkish web
+resumes and generates their downloadable PDFs.
 
-First, run the development server:
+## Routes
+
+| Route | Purpose |
+| --- | --- |
+| `/en` | English resume |
+| `/fr` | French resume |
+| `/tr` | Turkish resume |
+| `/api/pdf/en` | English PDF |
+| `/api/pdf/fr` | French PDF |
+| `/api/pdf/tr` | Turkish PDF |
+
+`/` permanently redirects to `/en`.
+
+## Stack
+
+- Next.js 16 App Router and React 19
+- TypeScript and Tailwind CSS
+- Self-hosted Inter variable fonts
+- Puppeteer Core and serverless Chromium for PDF generation
+- Node.js built-in test runner
+- pnpm, GitHub Actions, Dependabot, and Vercel
+
+## Local Development
+
+Use Node.js 24 and pnpm 10:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+nvm use
+corepack enable
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/en](http://localhost:3000/en).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The PDF endpoint uses an installed Chrome browser locally. It checks standard
+installation paths first. Set `CHROME_EXECUTABLE_PATH` if Chrome is installed
+elsewhere:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cp .env.example .env.local
+```
 
-## Learn More
+`RESUME_BASE_URL` is optional for local development. Without an explicit
+override, production uses the canonical `https://resume.ouedyan.dev` origin.
 
-To learn more about Next.js, take a look at the following resources:
+## Editing Resume Content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Each language is independently authored:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `content/resume/en.ts`
+- `content/resume/fr.ts`
+- `content/resume/tr.ts`
 
-## Deploy on Vercel
+Shared types live in `content/resume/types.ts`. Keep stable facts such as IDs,
+dates, links, email, and telephone aligned across all three locale files. The
+test suite enforces the critical employment and localization invariants,
+including the Simulon contract dates of August 2025 through January 2026.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The application is the single source of truth. Do not maintain separate PDF
+content; each PDF is printed from its matching locale page.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Quality Gate
+
+Run the complete local and CI gate:
+
+```bash
+pnpm check
+```
+
+It runs content and SEO tests, ESLint, TypeScript, a production build, and a
+production dependency audit. For visual PDF QA, start the production server,
+download each `/api/pdf/{locale}` route, and inspect the rendered A4 pages.
+
+## Production
+
+Vercel deploys the Next.js application with the Node.js PDF function. The
+function uses `@sparticuz/chromium` automatically in serverless environments;
+no production Chrome path is required.
+
+The public site includes localized canonical and `hreflang` metadata,
+ProfilePage and Person JSON-LD, `robots.txt`, a localized sitemap, a web app
+manifest, personal-brand icons, social sharing images, and restrictive
+security headers.
