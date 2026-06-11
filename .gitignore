@@ -36,6 +36,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local workspace and generated review artifacts
+.idea/
+.worktrees/
+/*.pdf
+/*-CleanShot.png
+/project_structure.txt
+/standard-resume-pro-ui.html
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
