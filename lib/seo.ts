@@ -123,8 +123,19 @@ export function buildMetadata(
           type: "image/png",
         },
       ],
+      other: [
+        {
+          rel: "mask-icon",
+          url: "/favicons/safari-pinned-tab.svg",
+          color: "#323336",
+        },
+      ],
     },
     manifest: "/manifest.webmanifest",
+    other: {
+      "msapplication-TileColor": "#323336",
+      "msapplication-config": "/favicons/browserconfig.xml",
+    },
     robots: {
       index: true,
       follow: true,
