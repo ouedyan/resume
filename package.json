@@ -13,7 +13,7 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "node --import tsx --test tests/*.test.ts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "rm -rf .next/types .next/dev/types && next typegen && tsc --noEmit",
     "check": "pnpm test && pnpm lint && pnpm typecheck && pnpm build && pnpm audit --prod --audit-level moderate"
   },
   "dependencies": {
