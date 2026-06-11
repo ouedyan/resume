@@ -56,7 +56,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={localeConfig[documentLocale].htmlLang}
-      className={`${inter.variable} print:[zoom:0.8]`}
+      className={`${inter.variable} print:[zoom:0.76]`}
     >
       <body className="bg-resume-background-main font-inter text-black antialiased print:bg-white">
         {children}

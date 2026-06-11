@@ -68,6 +68,8 @@
 
   .resume-entry-title {
     @apply font-lft font-semibold text-resume-text-primary uppercase text-lg tracking-widest leading-6 mb-1;
+    break-after: avoid;
+    page-break-after: avoid;
   }
 
   .resume-entry-subtitle {
@@ -158,8 +160,8 @@
 @page {
   size: a4 portrait;
   /* Margin independent of print scale/zoom */
-  margin-top: calc(0.4in / 0.8);
-  margin-bottom: calc(0.4in / 0.8);
-  margin-left: calc(1in / 0.8);
-  margin-right: calc(1in / 0.8);
+  margin-top: calc(0.4in / 0.76);
+  margin-bottom: calc(0.4in / 0.76);
+  margin-left: calc(1in / 0.76);
+  margin-right: calc(1in / 0.76);
 }
