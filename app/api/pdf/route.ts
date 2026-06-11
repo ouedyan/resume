@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
       printBackground: true,
     });
 
-    return new NextResponse(pdf, {
+    return new NextResponse(Uint8Array.from(pdf).buffer, {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition":
