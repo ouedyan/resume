@@ -56,7 +56,6 @@ export const englishResume = {
         {
           id: "coris-sic",
           name: "Coris SIC training and evaluation platform",
-          website: "https://sic.selinext.dev",
           bullets: [
             "Lead end-to-end engineering across Next.js, React, Spring Boot, Java, PostgreSQL, Nginx, and Google Cloud Platform.",
             "Designed the OAuth 2.0/OIDC security architecture with Spring Authorization Server, MFA, JWT, RBAC, secure refresh/logout flows, and live authorization checkpoints.",

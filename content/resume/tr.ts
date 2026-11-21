@@ -56,7 +56,6 @@ export const turkishResume = {
         {
           id: "coris-sic",
           name: "Coris SIC eğitim ve değerlendirme platformu",
-          website: "https://sic.selinext.dev",
           bullets: [
             "Next.js, React, Spring Boot, Java, PostgreSQL, Nginx ve Google Cloud Platform kullanılan ürünün uçtan uca mühendislik sorumluluğunu üstlendi.",
             "Spring Authorization Server, MFA, JWT, RBAC, güvenli token yenileme/çıkış akışları ve canlı yetkilendirme kontrolleriyle OAuth 2.0/OIDC güvenlik mimarisini tasarladı.",
