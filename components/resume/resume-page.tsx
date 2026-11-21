@@ -158,12 +158,16 @@ export function ResumePage({
                   {experience.projects?.map((project) => (
                     <div key={project.id} className="resume-project">
                       <h4 className="resume-project-title">
-                        <ExternalLink
-                          href={project.website}
-                          className="underline"
-                        >
-                          {project.name}
-                        </ExternalLink>
+                        {project.website ? (
+                          <ExternalLink
+                            href={project.website}
+                            className="underline"
+                          >
+                            {project.name}
+                          </ExternalLink>
+                        ) : (
+                          project.name
+                        )}
                       </h4>
                       <BulletList bullets={project.bullets} />
                     </div>

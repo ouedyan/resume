@@ -11,7 +11,8 @@ export type LinkValue = {
 export type ExperienceProject = {
   id: string;
   name: string;
-  website: string;
+  /** Omitted when the project has no public page worth linking. */
+  website?: string;
   bullets: string[];
 };
 
